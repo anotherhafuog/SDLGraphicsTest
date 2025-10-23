@@ -23,5 +23,9 @@ int main() {
 	SDL_RenderPresent(renderer);
 	SDL_Delay(10000); //keep open window for 10000 ticks
 
+	SDL_DestroyWindow(window);
+	SDL_DestroyRenderer(renderer);
+	SDL_Quit();//deallocate and close
+
 	return 0;
 }

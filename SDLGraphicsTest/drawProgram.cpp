@@ -40,9 +40,31 @@ int main() {
 	SDL_RenderDrawLines(renderer, rectPoints, 5); //draw square
 	SDL_RenderDrawPoints(renderer, rectPoints, 4); //draw points on edges for atari-style vector effects
 
+	struct SDL_Point angPoints[8];
+	angPoints[0].x = 400;
+	angPoints[0].y = 200;
+
+	angPoints[1].x = 420;
+	angPoints[1].y = 205;
+
+	angPoints[2].x = (angPoints[1].x);
+	angPoints[2].y = (angPoints[1].y + 1);
+
+	angPoints[3].x = (angPoints[0].x);
+	angPoints[3].y = (angPoints[0].y + 1);
+	
+	// this is too many points to store!
+
+	//SDL_RenderDrawLines(renderer, angPoints, 4);//draw thick line
+
+	//^v these should draw the same result, but top results in overlapping pixels
+
+	SDL_RenderDrawLine(renderer, angPoints[0].x, angPoints[0].y++, angPoints[1].x, angPoints[1].y++); //draw line
+	SDL_RenderDrawLine(renderer, angPoints[0].x, angPoints[0].y--, angPoints[1].x, angPoints[1].y--); //draw line
+	SDL_RenderDrawLine(renderer, (angPoints[0].x)+40, angPoints[0].y++, angPoints[1].x-1, angPoints[1].y++); //draw line
+	SDL_RenderDrawLine(renderer, (angPoints[0].x)+40, angPoints[0].y, angPoints[1].x-1, angPoints[1].y); //draw line
 	/* todo:
-	* test using drawrect for line thickness and less aliasing
-	* try scaling draw rect
+	* attempt scaling
 	* attempt animation using SDL time
 	*/
 
